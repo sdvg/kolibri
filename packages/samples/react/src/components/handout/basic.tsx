@@ -687,8 +687,6 @@ const TABLE_DATA = [
 export const HandoutBasic: FC = () => (
 	<div className="grid gap-4">
 		<div className="grid gap-4 grid-cols-[auto_1fr_1fr] items-center">
-			<KolHeading _label="" _level={1}>Preview Deployment 🎉</KolHeading>
-
 			<KolKolibri className="block w-75px" _labeled={false}></KolKolibri>
 			<KolHeading _label="" _level={1}>
 				<span slot="expert">
@@ -696,6 +694,8 @@ export const HandoutBasic: FC = () => (
 				</span>
 			</KolHeading>
 			<KolDetails _label="Abstract" _open>
+				<KolHeading _label="" _level={1}>Preview Deployment 🎉</KolHeading>
+
 				The handout shows a selection of KoliBri components in the style of <strong>{getThemeName(getTheme())}</strong>. Since KoliBri offers self-contained,
 				accessible web components that can be customized to your own corporate design using theming, you don&#39;t have to develop these components yourself.
 				For more information read our documentation and follow us (
