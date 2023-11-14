@@ -687,6 +687,8 @@ const TABLE_DATA = [
 export const HandoutBasic: FC = () => (
 	<div className="grid gap-4">
 		<div className="grid gap-4 grid-cols-[auto_1fr_1fr] items-center">
+			<KolHeading _label="" _level={1}>Preview Deployment 🎉</KolHeading>
+
 			<KolKolibri className="block w-75px" _labeled={false}></KolKolibri>
 			<KolHeading _label="" _level={1}>
 				<span slot="expert">
