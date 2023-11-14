@@ -13,3 +13,6 @@ package-lock.json
 CHANGELOG.*
 *.log
 *.tgz
+
+# Local Netlify folder
+.netlify
