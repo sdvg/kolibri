@@ -65,7 +65,7 @@ jobs:
       #  run: pnpm -r --workspace-concurrency=1 test-update
 
       - name: 'Quick change for testing'
-        run: "touch `date +%s`.txt"
+        run: "touch packages/themes/default/snapshots/`date +%s`.txt"
 
       - name: Display git status
         run: git status
