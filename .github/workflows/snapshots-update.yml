@@ -47,6 +47,9 @@ jobs:
       - name: Install
         run: pnpm i --no-frozen-lockfile
 
+      - name: Build
+        run: pnpm -r build
+
       # @todo purge
 
       - name: Run test-update in all packages
