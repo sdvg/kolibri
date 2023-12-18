@@ -12,7 +12,7 @@ on:
           default: false
 
 jobs:
-  update:
+  update-snapshots:
     runs-on: ubuntu-latest
     permissions:
       # Give the default GITHUB_TOKEN write permission to commit and push the
