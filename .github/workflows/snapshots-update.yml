@@ -6,6 +6,10 @@ on:
       target_branch:
         description: 'Target branch'
         required: true
+      purge_snapshots:
+          description: 'Delete all snapshots before regenerating them'
+          type: boolean
+          default: false
 
 jobs:
   update:
@@ -54,7 +58,9 @@ jobs:
       - name: Build
         run: pnpm -r build
 
-      # @todo purge
+      - name: Purge existing snapshots
+        if: ${{ github.event.inputs.purge_snapshots == 'true' }}
+        run: rm packages/themes/**/snapshots/**/*.png
 
       - name: Run test-update in all packages
         run: pnpm -r --workspace-concurrency=1 test-update
