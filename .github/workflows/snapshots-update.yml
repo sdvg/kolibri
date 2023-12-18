@@ -8,8 +8,12 @@ on:
         required: true
 
 jobs:
-  build:
+  update:
     runs-on: ubuntu-latest
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the
+      # added or changed files to the repository.
+      contents: write
     steps:
       - name: Checkout branch
         uses: actions/checkout@v4
@@ -60,8 +64,9 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config user.name github-actions
+          git config user.email github-actions@github.com
           git add .
           git commit -m "Update all snapshots"
           git push
+        # @todo only add snapshots
