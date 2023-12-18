@@ -63,10 +63,7 @@ jobs:
         run: git status
 
       - name: Commit and push changes
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add .
-          git commit -m "Update all snapshots"
-          git push
-        # @todo only add snapshots
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Update all snapshots
+          file_pattern: 'packages/themes/**/snapshots/*'
