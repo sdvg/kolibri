@@ -10,8 +10,8 @@
 		"test-update": "THEME_MODULE=src/index THEME_EXPORT=BMF kolibri-visual-test --update-snapshots theme-snapshots.spec.js"
 	},
 	"devDependencies": {
-		"@public-ui/schema": "2.0.2",
-		"@public-ui/visual-tests": "2.0.2",
+		"@public-ui/schema": "2.0.4",
+		"@public-ui/visual-tests": "2.0.4",
 		"@types/node": "ts5.3",
 		"typescript": "5.3.3"
 	},

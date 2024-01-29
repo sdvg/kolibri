@@ -47,11 +47,11 @@
 		"test-update": "THEME_MODULE=src/index THEME_EXPORT=DEFAULT kolibri-visual-test --update-snapshots theme-snapshots.spec.js"
 	},
 	"devDependencies": {
-		"@public-ui/schema": "2.0.2",
-		"@public-ui/visual-tests": "2.0.2",
+		"@public-ui/schema": "2.0.4",
+		"@public-ui/visual-tests": "2.0.4",
 		"@types/node": "ts5.3",
-		"@typescript-eslint/eslint-plugin": "6.15.0",
-		"@typescript-eslint/parser": "6.15.0",
+		"@typescript-eslint/eslint-plugin": "6.19.1",
+		"@typescript-eslint/parser": "6.19.1",
 		"eslint": "8.56.0",
 		"eslint-plugin-no-loops": "0.3.0",
 		"typescript": "5.3.3",

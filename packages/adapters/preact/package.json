@@ -46,10 +46,10 @@
 		"prepack": "unbuild"
 	},
 	"dependencies": {
-		"@public-ui/react": "2.0.2"
+		"@public-ui/react": "2.0.4"
 	},
 	"devDependencies": {
-		"@public-ui/components": "2.0.2",
+		"@public-ui/components": "2.0.4",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
 		"typescript": "5.3.3",
