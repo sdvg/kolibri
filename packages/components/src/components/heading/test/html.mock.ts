@@ -1,15 +1,14 @@
+import type { HeadingProps, HeadingStates } from '@public-ui/schema';
 import { mixMembers } from 'stencil-awesome-test';
 
-import { Props, States } from '../types';
-
 export const getHeadingWcHtml = (
-	props: Props,
+	props: HeadingProps,
 	slots: {
 		expert?: string;
 	} = {},
 	additionalAttrs = ''
 ): string => {
-	const state = mixMembers<Props, States>(
+	const state = mixMembers<HeadingProps, HeadingStates>(
 		{
 			_label: '', // ⚠ required
 			_level: 1,
@@ -20,7 +19,7 @@ export const getHeadingWcHtml = (
 
 	return `
 		<kol-heading-wc${additionalAttrs}>
-			<${tag} class="headline">
+			<${tag} class="headline headline-${props._variant || tag}">
 				${state._label}
 				${slots.expert !== undefined ? slots.expert : '<slot name="expert" slot="expert"></slot>'}
 			</${tag}>
@@ -28,7 +27,7 @@ export const getHeadingWcHtml = (
 };
 
 export const getHeadingHtml = (
-	props: Props,
+	props: HeadingProps,
 	slots: {
 		expert?: string;
 	} = {}

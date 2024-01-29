@@ -1,6 +1,6 @@
-import { Generic } from '@a11y-ui/core';
+import type { Generic } from 'adopted-style-sheets';
 
-import { Bundesamt, Bundesanstalt, Bundesministerium } from '../../enums/bund';
+import type { Bundesamt, Bundesanstalt, Bundesministerium } from '../../enums/bund';
 
 type RequiredProps = {
 	org: Bundesministerium | Bundesamt | Bundesanstalt;

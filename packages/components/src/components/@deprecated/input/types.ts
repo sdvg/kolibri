@@ -1,9 +1,5 @@
-import { Generic } from '@a11y-ui/core';
-
-import { Stringified } from '../../../types/common';
-import { InputTypeOnDefault } from '../../../types/input/types';
-import { PropLabelWithExpertSlot } from '../../../types/props/label';
-import { Props as ButtonProps } from '../../button/types';
+import type { ButtonProps, InputTypeOnDefault, PropLabelWithExpertSlot, Stringified } from '@public-ui/schema';
+import type { Generic } from 'adopted-style-sheets';
 
 type RequiredProps = NonNullable<unknown>;
 type OptionalProps = PropLabelWithExpertSlot & {
@@ -11,6 +7,7 @@ type OptionalProps = PropLabelWithExpertSlot & {
 	adjustHeight: boolean;
 	disabled: boolean;
 	error: string;
+	hideError: boolean;
 	hideLabel: boolean;
 	hint: string;
 	id: string;

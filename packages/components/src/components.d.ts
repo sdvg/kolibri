@@ -5,118 +5,10 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { LabelPropType, LabelWithExpertSlotPropType } from "./types/props/label";
-import { TooltipAlignPropType } from "./types/props/tooltip-align";
-import { HeadingLevel } from "./types/heading-level";
-import { KoliBriAccordionCallbacks } from "./components/accordion/types";
-import { AlertType, AlertVariant, KoliBriAlertEventCallbacks } from "./components/alert/types";
-import { ImageSourcePropType } from "./types/props/image-source";
-import { Stringified } from "./types/common";
-import { PropColor } from "./types/props/color";
-import { KoliBriHorizontalIcons, KoliBriIconsProp } from "./types/icons";
-import { ButtonProps } from "./components/button/types";
-import { BreadcrumbLinkProps } from "./components/breadcrumb/types";
-import { AccessKeyPropType } from "./types/props/access-key";
-import { CustomClassPropType } from "./types/props/custom-class";
-import { IconsPropType } from "./types/props/icons";
-import { ButtonCallbacksPropType } from "./types/props/button-callbacks";
-import { StencilUnknown } from "./types/unknown";
-import { AlternativeButtonLinkRolePropType } from "./types/props/alternative-button-link-role";
-import { SyncValueBySelectorPropType } from "./types/props/sync-value-by-selector";
-import { ButtonTypePropType } from "./types/props/button-type";
-import { ButtonVariantPropType } from "./types/props/button-variant";
-import { IdPropType } from "./types/props/id";
-import { NamePropType } from "./types/props/name";
-import { ButtonOrLinkOrTextWithChildrenProps } from "./types/button-link-text";
-import { KoliBriCardEventCallbacks } from "./components/card/types";
-import { EventCallbacks } from "./components/details/types";
-import { KoliBriFormCallbacks } from "./components/form/types";
-import { Loading } from "./utils/validators/loading";
-import { SuggestionsPropType } from "./types/props/suggestions";
-import { InputCheckboxIconsProp, InputCheckboxVariant } from "./components/input-checkbox/types";
-import { InputTypeOnDefault, InputTypeOnOff } from "./types/input/types";
-import { Iso8601 } from "./types/input/iso8601";
-import { InputDateType } from "./types/input/control/number";
-import { OptionsPropType, OptionsWithOptgroupPropType } from "./types/props/options";
-import { Orientation } from "./types/orientation";
-import { W3CInputValue } from "./types/w3c";
-import { InputTextType } from "./types/input/control/text";
-import { DownloadPropType } from "./types/props/download";
-import { HrefPropType } from "./types/props/href";
-import { AriaCurrentPropType } from "./types/props/aria-current";
-import { LinkOnCallbacksPropType } from "./types/props/link-on-callbacks";
-import { LinkTargetPropType } from "./types/props/link-target";
-import { ListStyleType } from "./components/link-group/types";
-import { LinkProps } from "./components/link/types";
+import { AccessKeyPropType, AlertType, AlertVariant, AlignPropType, AlternativeButtonLinkRolePropType, AriaCurrentValuePropType, BreadcrumbLinkProps, ButtonCallbacksPropType, ButtonOrLinkOrTextWithChildrenProps, ButtonProps, ButtonTypePropType, ButtonVariantPropType, CSSResize, CustomClassPropType, DownloadPropType, ErrorListPropType, EventCallbacks, HeadingLevel, HeadingVariantPropType, HrefPropType, IconsPropType, IdPropType, ImageSourcePropType, InputCheckboxIconsProp, InputCheckboxVariant, InputDateType, InputTextType, InputTypeOnDefault, InputTypeOnOff, Iso8601, KoliBriAccordionCallbacks, KoliBriAlertEventCallbacks, KoliBriCardEventCallbacks, KoliBriFormCallbacks, KoliBriHorizontalIcons, KoliBriIconsProp, KoliBriModalEventCallbacks, KoliBriPaginationButtonCallbacks, KoliBriProgressVariantType, KoliBriQuoteVariant, KoliBriTableDataType, KoliBriTableHeaders, KoliBriTablePaginationProps, KoliBriTabsCallbacks, LabelPropType, LabelWithExpertSlotPropType, LinkOnCallbacksPropType, LinkProps, LinkTargetPropType, ListStyleType, Loading, MaxPropType, NamePropType, OptionsPropType, OptionsWithOptgroupPropType, Orientation, PaginationHasButton, PaginationPositionPropType, PropColor, RowsPropType, SpinVariantPropType, StencilUnknown, Stringified, SuggestionsPropType, SyncValueBySelectorPropType, TabButtonProps, Toast, ToastState, TooltipAlignPropType, W3CInputValue } from "@public-ui/schema";
 import { Bundesamt, Bundesanstalt, Bundesministerium } from "./enums/bund";
-import { KoliBriModalEventCallbacks } from "./types/modal";
-import { KoliBriPaginationButtonCallbacks, PaginationHasButton } from "./components/pagination/types";
-import { MaxPropType } from "./types/props/max";
-import { AlignPropType } from "./types/props/align";
-import { KoliBriProgressVariantType } from "./types/progress";
-import { KoliBriQuoteVariant } from "./components/quote/types";
-import { RowsPropType } from "./types/props/rows";
-import { SpinVariantPropType } from "./types/props/variant/spin";
-import { KoliBriTableDataType, KoliBriTableHeaders, KoliBriTablePaginationProps } from "./components/table/types";
-import { KoliBriTabsCallbacks, TabButtonProps } from "./components/tabs/types";
-import { CSSResize } from "./components/textarea/types";
-import { Toast, ToastState } from "./components/toaster/types";
-export { LabelPropType, LabelWithExpertSlotPropType } from "./types/props/label";
-export { TooltipAlignPropType } from "./types/props/tooltip-align";
-export { HeadingLevel } from "./types/heading-level";
-export { KoliBriAccordionCallbacks } from "./components/accordion/types";
-export { AlertType, AlertVariant, KoliBriAlertEventCallbacks } from "./components/alert/types";
-export { ImageSourcePropType } from "./types/props/image-source";
-export { Stringified } from "./types/common";
-export { PropColor } from "./types/props/color";
-export { KoliBriHorizontalIcons, KoliBriIconsProp } from "./types/icons";
-export { ButtonProps } from "./components/button/types";
-export { BreadcrumbLinkProps } from "./components/breadcrumb/types";
-export { AccessKeyPropType } from "./types/props/access-key";
-export { CustomClassPropType } from "./types/props/custom-class";
-export { IconsPropType } from "./types/props/icons";
-export { ButtonCallbacksPropType } from "./types/props/button-callbacks";
-export { StencilUnknown } from "./types/unknown";
-export { AlternativeButtonLinkRolePropType } from "./types/props/alternative-button-link-role";
-export { SyncValueBySelectorPropType } from "./types/props/sync-value-by-selector";
-export { ButtonTypePropType } from "./types/props/button-type";
-export { ButtonVariantPropType } from "./types/props/button-variant";
-export { IdPropType } from "./types/props/id";
-export { NamePropType } from "./types/props/name";
-export { ButtonOrLinkOrTextWithChildrenProps } from "./types/button-link-text";
-export { KoliBriCardEventCallbacks } from "./components/card/types";
-export { EventCallbacks } from "./components/details/types";
-export { KoliBriFormCallbacks } from "./components/form/types";
-export { Loading } from "./utils/validators/loading";
-export { SuggestionsPropType } from "./types/props/suggestions";
-export { InputCheckboxIconsProp, InputCheckboxVariant } from "./components/input-checkbox/types";
-export { InputTypeOnDefault, InputTypeOnOff } from "./types/input/types";
-export { Iso8601 } from "./types/input/iso8601";
-export { InputDateType } from "./types/input/control/number";
-export { OptionsPropType, OptionsWithOptgroupPropType } from "./types/props/options";
-export { Orientation } from "./types/orientation";
-export { W3CInputValue } from "./types/w3c";
-export { InputTextType } from "./types/input/control/text";
-export { DownloadPropType } from "./types/props/download";
-export { HrefPropType } from "./types/props/href";
-export { AriaCurrentPropType } from "./types/props/aria-current";
-export { LinkOnCallbacksPropType } from "./types/props/link-on-callbacks";
-export { LinkTargetPropType } from "./types/props/link-target";
-export { ListStyleType } from "./components/link-group/types";
-export { LinkProps } from "./components/link/types";
+export { AccessKeyPropType, AlertType, AlertVariant, AlignPropType, AlternativeButtonLinkRolePropType, AriaCurrentValuePropType, BreadcrumbLinkProps, ButtonCallbacksPropType, ButtonOrLinkOrTextWithChildrenProps, ButtonProps, ButtonTypePropType, ButtonVariantPropType, CSSResize, CustomClassPropType, DownloadPropType, ErrorListPropType, EventCallbacks, HeadingLevel, HeadingVariantPropType, HrefPropType, IconsPropType, IdPropType, ImageSourcePropType, InputCheckboxIconsProp, InputCheckboxVariant, InputDateType, InputTextType, InputTypeOnDefault, InputTypeOnOff, Iso8601, KoliBriAccordionCallbacks, KoliBriAlertEventCallbacks, KoliBriCardEventCallbacks, KoliBriFormCallbacks, KoliBriHorizontalIcons, KoliBriIconsProp, KoliBriModalEventCallbacks, KoliBriPaginationButtonCallbacks, KoliBriProgressVariantType, KoliBriQuoteVariant, KoliBriTableDataType, KoliBriTableHeaders, KoliBriTablePaginationProps, KoliBriTabsCallbacks, LabelPropType, LabelWithExpertSlotPropType, LinkOnCallbacksPropType, LinkProps, LinkTargetPropType, ListStyleType, Loading, MaxPropType, NamePropType, OptionsPropType, OptionsWithOptgroupPropType, Orientation, PaginationHasButton, PaginationPositionPropType, PropColor, RowsPropType, SpinVariantPropType, StencilUnknown, Stringified, SuggestionsPropType, SyncValueBySelectorPropType, TabButtonProps, Toast, ToastState, TooltipAlignPropType, W3CInputValue } from "@public-ui/schema";
 export { Bundesamt, Bundesanstalt, Bundesministerium } from "./enums/bund";
-export { KoliBriModalEventCallbacks } from "./types/modal";
-export { KoliBriPaginationButtonCallbacks, PaginationHasButton } from "./components/pagination/types";
-export { MaxPropType } from "./types/props/max";
-export { AlignPropType } from "./types/props/align";
-export { KoliBriProgressVariantType } from "./types/progress";
-export { KoliBriQuoteVariant } from "./components/quote/types";
-export { RowsPropType } from "./types/props/rows";
-export { SpinVariantPropType } from "./types/props/variant/spin";
-export { KoliBriTableDataType, KoliBriTableHeaders, KoliBriTablePaginationProps } from "./components/table/types";
-export { KoliBriTabsCallbacks, TabButtonProps } from "./components/tabs/types";
-export { CSSResize } from "./components/textarea/types";
-export { Toast, ToastState } from "./components/toaster/types";
 export namespace Components {
     interface KolAbbr {
         /**
@@ -335,6 +227,7 @@ export namespace Components {
           * Defines which variant should be used for presentation.
          */
         "_variant"?: ButtonVariantPropType;
+        "getValue": () => Promise<Stringified<StencilUnknown> | undefined>;
     }
     interface KolButtonGroup {
     }
@@ -413,15 +306,7 @@ export namespace Components {
           * Defines the value that the button emits on click.
          */
         "_value"?: Stringified<StencilUnknown>;
-    }
-    /**
-     * Internal component that renders an action or text component like a button or a link.
-     */
-    interface KolButtonLinkTextSwitch {
-        /**
-          * Die Link-Daten welche diese Komponente verwendet, um die entsprechende Komponente zu rendern.
-         */
-        "_link": ButtonOrLinkOrTextWithChildrenProps;
+        "getValue": () => Promise<Stringified<StencilUnknown> | undefined>;
     }
     interface KolButtonWc {
         /**
@@ -538,6 +423,10 @@ export namespace Components {
     }
     interface KolForm {
         /**
+          * A list of error objects that each describe an issue encountered in the form. Each error object contains a message and a selector for identifying the form element related to the error.
+         */
+        "_errorList"?: ErrorListPropType[];
+        /**
           * Gibt die EventCallback-Funktionen für die Form-Events an.
          */
         "_on"?: KoliBriFormCallbacks;
@@ -559,6 +448,10 @@ export namespace Components {
           * Defines the text of the secondary headline.
          */
         "_secondaryHeadline"?: string;
+        /**
+          * Defines which variant should be used for presentation.
+         */
+        "_variant"?: HeadingVariantPropType;
     }
     interface KolHeadingWc {
         /**
@@ -573,6 +466,10 @@ export namespace Components {
           * Setzt den Text einer weiteren Überschrift, einen Level kleiner, unter der Ersten.
          */
         "_secondaryHeadline"?: string;
+        /**
+          * Defines which variant should be used for presentation.
+         */
+        "_variant"?: HeadingVariantPropType;
     }
     interface KolIcon {
         /**
@@ -791,6 +688,7 @@ export namespace Components {
           * Defines which variant should be used for presentation.
          */
         "_variant"?: InputCheckboxVariant;
+        "getValue": () => Promise<boolean | undefined>;
     }
     interface KolInputColor {
         /**
@@ -877,6 +775,7 @@ export namespace Components {
           * Defines the value of the input.
          */
         "_value"?: string;
+        "getValue": () => Promise<string | undefined>;
     }
     interface KolInputDate {
         /**
@@ -989,6 +888,7 @@ export namespace Components {
           * Defines the value of the input.
          */
         "_value"?: Iso8601 | Date | null;
+        "getValue": () => Promise<string | undefined>;
     }
     interface KolInputEmail {
         /**
@@ -1107,6 +1007,7 @@ export namespace Components {
           * Defines the value of the input.
          */
         "_value"?: string;
+        "getValue": () => Promise<string | undefined>;
     }
     interface KolInputFile {
         /**
@@ -1199,6 +1100,7 @@ export namespace Components {
           * Defines the value of the input.
          */
         "_value"?: string;
+        "getValue": () => Promise<FileList | null | undefined>;
     }
     interface KolInputNumber {
         /**
@@ -1311,6 +1213,7 @@ export namespace Components {
           * Defines the value of the input.
          */
         "_value"?: number | Iso8601 | null;
+        "getValue": () => Promise<string | undefined>;
     }
     interface KolInputPassword {
         /**
@@ -1420,6 +1323,7 @@ export namespace Components {
           * Defines the value of the input.
          */
         "_value"?: string;
+        "getValue": () => Promise<string | undefined>;
     }
     interface KolInputRadio {
         /**
@@ -1504,6 +1408,7 @@ export namespace Components {
           * @see Known bug: https://github.com/ionic-team/stencil/issues/3902
          */
         "_value"?: Stringified<W3CInputValue>;
+        "getValue": () => Promise<W3CInputValue | undefined>;
     }
     interface KolInputRange {
         /**
@@ -1598,6 +1503,7 @@ export namespace Components {
           * Defines the value of the input.
          */
         "_value"?: number;
+        "getValue": () => Promise<number | undefined>;
     }
     interface KolInputText {
         /**
@@ -1716,14 +1622,11 @@ export namespace Components {
           * Defines the value of the input.
          */
         "_value"?: string;
+        "getValue": () => Promise<string | undefined>;
     }
     interface KolKolibri {
         /**
-          * Gibt an, ob das Bild-Logo farblich animiert werden soll.
-         */
-        "_animate"?: boolean;
-        /**
-          * Gibt an, in welcher Farbe das Bild-Logo initial dargestellt werden soll.
+          * Defines the color of the logo and label.
          */
         "_color"?: Stringified<PropColor>;
         /**
@@ -1736,6 +1639,10 @@ export namespace Components {
           * Defines the elements access key.
          */
         "_accessKey"?: AccessKeyPropType;
+        /**
+          * Defines the value for the aria-current attribute.
+         */
+        "_ariaCurrentValue"?: AriaCurrentValuePropType;
         /**
           * Tells the browser that the link contains a file. Optionally sets the filename.
          */
@@ -1758,10 +1665,6 @@ export namespace Components {
          */
         "_label"?: LabelWithExpertSlotPropType;
         /**
-          * Listen on an aria-current event with this value. If the value matches the current value and the href is the same as the current url, the aria-current attribute will be set to current value.
-         */
-        "_listenAriaCurrent"?: AriaCurrentPropType;
-        /**
           * Defines the callback functions for links.
          */
         "_on"?: LinkOnCallbacksPropType;
@@ -1778,10 +1681,6 @@ export namespace Components {
          */
         "_target"?: LinkTargetPropType;
         /**
-          * Defines the description to use when the link is going to be opened in another application.
-         */
-        "_targetDescription"?: string;
-        /**
           * Defines where to show the Tooltip preferably: top, right, bottom or left.
          */
         "_tooltipAlign"?: TooltipAlignPropType;
@@ -1791,6 +1690,10 @@ export namespace Components {
           * Defines the elements access key.
          */
         "_accessKey"?: AccessKeyPropType;
+        /**
+          * Defines the value for the aria-current attribute.
+         */
+        "_ariaCurrentValue"?: AriaCurrentValuePropType;
         /**
           * Defines the custom class attribute if _variant="custom" is set.
          */
@@ -1817,10 +1720,6 @@ export namespace Components {
          */
         "_label": LabelWithExpertSlotPropType;
         /**
-          * Listen on an aria-current event with this value. If the value matches the current value and the href is the same as the current url, the aria-current attribute will be set to current value.
-         */
-        "_listenAriaCurrent"?: AriaCurrentPropType;
-        /**
           * Defines the callback functions for links.
          */
         "_on"?: LinkOnCallbacksPropType;
@@ -1836,10 +1735,6 @@ export namespace Components {
           * Defines where to open the link.
          */
         "_target"?: LinkTargetPropType;
-        /**
-          * Defines the description to use when the link is going to be opened in another application.
-         */
-        "_targetDescription"?: string;
         /**
           * Defines where to show the Tooltip preferably: top, right, bottom or left.
          */
@@ -1873,6 +1768,10 @@ export namespace Components {
          */
         "_accessKey"?: AccessKeyPropType;
         /**
+          * Defines the value for the aria-current attribute.
+         */
+        "_ariaCurrentValue"?: AriaCurrentValuePropType;
+        /**
           * Tells the browser that the link contains a file. Optionally sets the filename.
          */
         "_download"?: DownloadPropType;
@@ -1894,10 +1793,6 @@ export namespace Components {
          */
         "_label"?: LabelWithExpertSlotPropType;
         /**
-          * Listen on an aria-current event with this value. If the value matches the current value and the href is the same as the current url, the aria-current attribute will be set to current value.
-         */
-        "_listenAriaCurrent"?: AriaCurrentPropType;
-        /**
           * Defines the callback functions for links.
          */
         "_on"?: LinkOnCallbacksPropType;
@@ -1913,10 +1808,6 @@ export namespace Components {
           * Defines where to open the link.
          */
         "_target"?: LinkTargetPropType;
-        /**
-          * Defines the description to use when the link is going to be opened in another application.
-         */
-        "_targetDescription"?: string;
         /**
           * Defines where to show the Tooltip preferably: top, right, bottom or left.
          */
@@ -1947,10 +1838,6 @@ export namespace Components {
         "_width"?: string;
     }
     interface KolNav {
-        /**
-          * Defines the value of aria-current to be used with the current context within the navigation.
-         */
-        "_ariaCurrentValue": AriaCurrentPropType;
         /**
           * Defines if navigation nodes can be collapsed or not. Enabled by default.
           * @TODO : Change type back to `CollapsiblePropType` after Stencil#4663 has been resolved.
@@ -2166,6 +2053,7 @@ export namespace Components {
           * Defines the value of the input.
          */
         "_value"?: Stringified<W3CInputValue[]>;
+        "getValue": () => Promise<Stringified<W3CInputValue[]> | undefined>;
     }
     interface KolSkipNav {
         /**
@@ -2317,6 +2205,10 @@ export namespace Components {
     }
     interface KolTable {
         /**
+          * Defines whether to allow multi sort.
+         */
+        "_allowMultiSort"?: boolean;
+        /**
           * Defines the primary table data.
          */
         "_data": Stringified<KoliBriTableDataType[]>;
@@ -2340,6 +2232,10 @@ export namespace Components {
           * Defines whether to show the data distributed over multiple pages.
          */
         "_pagination"?: boolean | Stringified<KoliBriTablePaginationProps>;
+        /**
+          * Controls the position of the pagination.
+         */
+        "_paginationPosition"?: PaginationPositionPropType;
     }
     interface KolTabs {
         /**
@@ -2468,6 +2364,7 @@ export namespace Components {
           * Defines the value of the input.
          */
         "_value"?: string;
+        "getValue": () => Promise<string | undefined>;
     }
     interface KolToastContainer {
         "closeAll": () => Promise<void>;
@@ -2570,15 +2467,6 @@ declare global {
     var HTMLKolButtonLinkElement: {
         prototype: HTMLKolButtonLinkElement;
         new (): HTMLKolButtonLinkElement;
-    };
-    /**
-     * Internal component that renders an action or text component like a button or a link.
-     */
-    interface HTMLKolButtonLinkTextSwitchElement extends Components.KolButtonLinkTextSwitch, HTMLStencilElement {
-    }
-    var HTMLKolButtonLinkTextSwitchElement: {
-        prototype: HTMLKolButtonLinkTextSwitchElement;
-        new (): HTMLKolButtonLinkTextSwitchElement;
     };
     interface HTMLKolButtonWcElement extends Components.KolButtonWc, HTMLStencilElement {
     }
@@ -2863,7 +2751,6 @@ declare global {
         "kol-button-group": HTMLKolButtonGroupElement;
         "kol-button-group-wc": HTMLKolButtonGroupWcElement;
         "kol-button-link": HTMLKolButtonLinkElement;
-        "kol-button-link-text-switch": HTMLKolButtonLinkTextSwitchElement;
         "kol-button-wc": HTMLKolButtonWcElement;
         "kol-card": HTMLKolCardElement;
         "kol-details": HTMLKolDetailsElement;
@@ -3208,15 +3095,6 @@ declare namespace LocalJSX {
          */
         "_value"?: Stringified<StencilUnknown>;
     }
-    /**
-     * Internal component that renders an action or text component like a button or a link.
-     */
-    interface KolButtonLinkTextSwitch {
-        /**
-          * Die Link-Daten welche diese Komponente verwendet, um die entsprechende Komponente zu rendern.
-         */
-        "_link": ButtonOrLinkOrTextWithChildrenProps;
-    }
     interface KolButtonWc {
         /**
           * Defines the elements access key.
@@ -3332,6 +3210,10 @@ declare namespace LocalJSX {
     }
     interface KolForm {
         /**
+          * A list of error objects that each describe an issue encountered in the form. Each error object contains a message and a selector for identifying the form element related to the error.
+         */
+        "_errorList"?: ErrorListPropType[];
+        /**
           * Gibt die EventCallback-Funktionen für die Form-Events an.
          */
         "_on"?: KoliBriFormCallbacks;
@@ -3353,6 +3235,10 @@ declare namespace LocalJSX {
           * Defines the text of the secondary headline.
          */
         "_secondaryHeadline"?: string;
+        /**
+          * Defines which variant should be used for presentation.
+         */
+        "_variant"?: HeadingVariantPropType;
     }
     interface KolHeadingWc {
         /**
@@ -3367,6 +3253,10 @@ declare namespace LocalJSX {
           * Setzt den Text einer weiteren Überschrift, einen Level kleiner, unter der Ersten.
          */
         "_secondaryHeadline"?: string;
+        /**
+          * Defines which variant should be used for presentation.
+         */
+        "_variant"?: HeadingVariantPropType;
     }
     interface KolIcon {
         /**
@@ -4513,11 +4403,7 @@ declare namespace LocalJSX {
     }
     interface KolKolibri {
         /**
-          * Gibt an, ob das Bild-Logo farblich animiert werden soll.
-         */
-        "_animate"?: boolean;
-        /**
-          * Gibt an, in welcher Farbe das Bild-Logo initial dargestellt werden soll.
+          * Defines the color of the logo and label.
          */
         "_color"?: Stringified<PropColor>;
         /**
@@ -4530,6 +4416,10 @@ declare namespace LocalJSX {
           * Defines the elements access key.
          */
         "_accessKey"?: AccessKeyPropType;
+        /**
+          * Defines the value for the aria-current attribute.
+         */
+        "_ariaCurrentValue"?: AriaCurrentValuePropType;
         /**
           * Tells the browser that the link contains a file. Optionally sets the filename.
          */
@@ -4552,10 +4442,6 @@ declare namespace LocalJSX {
          */
         "_label"?: LabelWithExpertSlotPropType;
         /**
-          * Listen on an aria-current event with this value. If the value matches the current value and the href is the same as the current url, the aria-current attribute will be set to current value.
-         */
-        "_listenAriaCurrent"?: AriaCurrentPropType;
-        /**
           * Defines the callback functions for links.
          */
         "_on"?: LinkOnCallbacksPropType;
@@ -4572,10 +4458,6 @@ declare namespace LocalJSX {
          */
         "_target"?: LinkTargetPropType;
         /**
-          * Defines the description to use when the link is going to be opened in another application.
-         */
-        "_targetDescription"?: string;
-        /**
           * Defines where to show the Tooltip preferably: top, right, bottom or left.
          */
         "_tooltipAlign"?: TooltipAlignPropType;
@@ -4585,6 +4467,10 @@ declare namespace LocalJSX {
           * Defines the elements access key.
          */
         "_accessKey"?: AccessKeyPropType;
+        /**
+          * Defines the value for the aria-current attribute.
+         */
+        "_ariaCurrentValue"?: AriaCurrentValuePropType;
         /**
           * Defines the custom class attribute if _variant="custom" is set.
          */
@@ -4611,10 +4497,6 @@ declare namespace LocalJSX {
          */
         "_label": LabelWithExpertSlotPropType;
         /**
-          * Listen on an aria-current event with this value. If the value matches the current value and the href is the same as the current url, the aria-current attribute will be set to current value.
-         */
-        "_listenAriaCurrent"?: AriaCurrentPropType;
-        /**
           * Defines the callback functions for links.
          */
         "_on"?: LinkOnCallbacksPropType;
@@ -4630,10 +4512,6 @@ declare namespace LocalJSX {
           * Defines where to open the link.
          */
         "_target"?: LinkTargetPropType;
-        /**
-          * Defines the description to use when the link is going to be opened in another application.
-         */
-        "_targetDescription"?: string;
         /**
           * Defines where to show the Tooltip preferably: top, right, bottom or left.
          */
@@ -4667,6 +4545,10 @@ declare namespace LocalJSX {
          */
         "_accessKey"?: AccessKeyPropType;
         /**
+          * Defines the value for the aria-current attribute.
+         */
+        "_ariaCurrentValue"?: AriaCurrentValuePropType;
+        /**
           * Tells the browser that the link contains a file. Optionally sets the filename.
          */
         "_download"?: DownloadPropType;
@@ -4688,10 +4570,6 @@ declare namespace LocalJSX {
          */
         "_label"?: LabelWithExpertSlotPropType;
         /**
-          * Listen on an aria-current event with this value. If the value matches the current value and the href is the same as the current url, the aria-current attribute will be set to current value.
-         */
-        "_listenAriaCurrent"?: AriaCurrentPropType;
-        /**
           * Defines the callback functions for links.
          */
         "_on"?: LinkOnCallbacksPropType;
@@ -4707,10 +4585,6 @@ declare namespace LocalJSX {
           * Defines where to open the link.
          */
         "_target"?: LinkTargetPropType;
-        /**
-          * Defines the description to use when the link is going to be opened in another application.
-         */
-        "_targetDescription"?: string;
         /**
           * Defines where to show the Tooltip preferably: top, right, bottom or left.
          */
@@ -4741,10 +4615,6 @@ declare namespace LocalJSX {
         "_width"?: string;
     }
     interface KolNav {
-        /**
-          * Defines the value of aria-current to be used with the current context within the navigation.
-         */
-        "_ariaCurrentValue"?: AriaCurrentPropType;
         /**
           * Defines if navigation nodes can be collapsed or not. Enabled by default.
           * @TODO : Change type back to `CollapsiblePropType` after Stencil#4663 has been resolved.
@@ -5111,6 +4981,10 @@ declare namespace LocalJSX {
     }
     interface KolTable {
         /**
+          * Defines whether to allow multi sort.
+         */
+        "_allowMultiSort"?: boolean;
+        /**
           * Defines the primary table data.
          */
         "_data": Stringified<KoliBriTableDataType[]>;
@@ -5134,6 +5008,10 @@ declare namespace LocalJSX {
           * Defines whether to show the data distributed over multiple pages.
          */
         "_pagination"?: boolean | Stringified<KoliBriTablePaginationProps>;
+        /**
+          * Controls the position of the pagination.
+         */
+        "_paginationPosition"?: PaginationPositionPropType;
     }
     interface KolTabs {
         /**
@@ -5302,7 +5180,6 @@ declare namespace LocalJSX {
         "kol-button-group": KolButtonGroup;
         "kol-button-group-wc": KolButtonGroupWc;
         "kol-button-link": KolButtonLink;
-        "kol-button-link-text-switch": KolButtonLinkTextSwitch;
         "kol-button-wc": KolButtonWc;
         "kol-card": KolCard;
         "kol-details": KolDetails;
@@ -5366,10 +5243,6 @@ declare module "@stencil/core" {
             "kol-button-group": LocalJSX.KolButtonGroup & JSXBase.HTMLAttributes<HTMLKolButtonGroupElement>;
             "kol-button-group-wc": LocalJSX.KolButtonGroupWc & JSXBase.HTMLAttributes<HTMLKolButtonGroupWcElement>;
             "kol-button-link": LocalJSX.KolButtonLink & JSXBase.HTMLAttributes<HTMLKolButtonLinkElement>;
-            /**
-             * Internal component that renders an action or text component like a button or a link.
-             */
-            "kol-button-link-text-switch": LocalJSX.KolButtonLinkTextSwitch & JSXBase.HTMLAttributes<HTMLKolButtonLinkTextSwitchElement>;
             "kol-button-wc": LocalJSX.KolButtonWc & JSXBase.HTMLAttributes<HTMLKolButtonWcElement>;
             "kol-card": LocalJSX.KolCard & JSXBase.HTMLAttributes<HTMLKolCardElement>;
             "kol-details": LocalJSX.KolDetails & JSXBase.HTMLAttributes<HTMLKolDetailsElement>;

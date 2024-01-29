@@ -1,14 +1,12 @@
-import { Component, h, Host, JSX, Prop, State, Watch } from '@stencil/core';
+import type { KoliBriProgressVariantType, LabelPropType, ProgressAPI, ProgressStates } from '@public-ui/schema';
+import { KoliBriProgressVariantEnum, validateLabel, watchNumber, watchString, watchValidator } from '@public-ui/schema';
+import { Component, h, Host, Prop, State, Watch } from '@stencil/core';
 
-import { KoliBriProgressVariantEnum, KoliBriProgressVariantType } from '../../types/progress';
-import { LabelPropType, validateLabel } from '../../types/props/label';
-import { watchNumber, watchString, watchValidator } from '../../utils/prop.validators';
-import { API, States } from './types';
-
+import type { JSX } from '@stencil/core';
 const VALID_VARIANTS = Object.keys(KoliBriProgressVariantEnum);
 
 // https://css-tricks.com/html5-progress-element/
-const createProgressSVG = (state: States): JSX.Element => {
+const createProgressSVG = (state: ProgressStates): JSX.Element => {
 	const fullCircle = 342;
 	const textPositionTop = '43%';
 	const textPositionBottom = '57%';
@@ -90,7 +88,7 @@ const createProgressSVG = (state: States): JSX.Element => {
 	},
 	shadow: true,
 })
-export class KolProcess implements API {
+export class KolProcess implements ProgressAPI {
 	private interval?: number;
 
 	// https://dequeuniversity.com/library/aria/progress-bar-bounded
@@ -99,7 +97,7 @@ export class KolProcess implements API {
 			<Host>
 				{createProgressSVG(this.state)}
 				<progress aria-busy={this.state._value < this.state._max ? 'true' : 'false'} max={this.state._max} value={this.state._value}></progress>
-				<span aria-live="polite" aria-relevant="removals text" hidden>
+				<span aria-live="polite" aria-relevant="removals text" class="visually-hidden">
 					{this.state._liveValue} von {this.state._max} {this.state._unit}
 				</span>
 			</Host>
@@ -131,7 +129,7 @@ export class KolProcess implements API {
 	 */
 	@Prop() public _variant?: KoliBriProgressVariantType;
 
-	@State() public state: States = {
+	@State() public state: ProgressStates = {
 		_max: 100,
 		_unit: '%',
 		_value: 0,

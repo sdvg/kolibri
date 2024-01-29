@@ -1,10 +1,10 @@
-import { Generic } from '@a11y-ui/core';
+import type { Generic } from 'adopted-style-sheets';
 
-import { validateTouched } from '../../types/props/touched';
-import { watchBoolean } from '../../utils/prop.validators';
+import { validateTouched, watchBoolean } from '@public-ui/schema';
+
 import { AssociatedInputController } from './associated.controller';
-import { Props, Watches } from './types';
 
+import type { Props, Watches } from './types';
 export class ControlledInputController extends AssociatedInputController implements Watches {
 	protected readonly component: Generic.Element.Component & Props;
 

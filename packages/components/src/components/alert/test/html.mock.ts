@@ -4,9 +4,9 @@ import { translate } from '../../../i18n';
 import { getButtonWcHtml } from '../../button/test/html.mock';
 import { getHeadingWcHtml } from '../../heading/test/html.mock';
 import { getIconHtml } from '../../icon/test/html.mock';
-import { Props } from '../types';
 
-export const getAlertHtml = (props: Props, innerHTML = '', additionalHTML = ''): string => {
+import type { AlertProps } from '@public-ui/schema';
+export const getAlertHtml = (props: AlertProps, innerHTML = '', additionalHTML = ''): string => {
 	props = mixMembers(
 		{
 			_level: 1,
@@ -18,7 +18,7 @@ export const getAlertHtml = (props: Props, innerHTML = '', additionalHTML = ''):
 	props._variant = props._variant || 'msg';
 	return `<kol-alert${additionalHTML}>
   <mock:shadow-root>
-    <kol-alert-wc class="${type} ${props._variant}${props._hasCloser ? ' hasCloser' : ''}"${props._alert === true ? ' role="alert"' : ''}>
+    <kol-alert-wc class="alert ${type} ${props._variant}${props._hasCloser ? ' hasCloser' : ''}"${props._alert === true ? ' role="alert"' : ''}>
 			<div class="heading">
 				${getIconHtml(
 					{
@@ -47,7 +47,7 @@ export const getAlertHtml = (props: Props, innerHTML = '', additionalHTML = ''):
 					},
 					` class="heading-icon"`
 				)}
-				<div>
+				<div class="heading-content">
 					${
 						typeof props._label === 'string' && props._label.length > 0
 							? getHeadingWcHtml(

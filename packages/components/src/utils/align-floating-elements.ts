@@ -1,7 +1,7 @@
-import { processEnv } from './reuse';
 import { arrow, computePosition, flip, offset, shift } from '@floating-ui/dom';
-import { AlignPropType } from '../types/props/align';
+import { processEnv } from '@public-ui/schema';
 
+import type { AlignPropType } from '@public-ui/schema';
 type Arguments = {
 	floatingElement: HTMLElement;
 	referenceElement: Element;
@@ -18,6 +18,7 @@ export const alignFloatingElements = async ({ floatingElement, referenceElement,
 		const { x, y, middlewareData, placement } = await computePosition(referenceElement, floatingElement, {
 			placement: align,
 			middleware: middleware,
+			strategy: 'fixed',
 		});
 
 		Object.assign(floatingElement.style, {

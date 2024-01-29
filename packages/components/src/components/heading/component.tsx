@@ -1,11 +1,10 @@
-import { Component, h, Host, JSX, Prop, State, Watch } from '@stencil/core';
+import type { HeadingAPI, HeadingLevel, HeadingStates, HeadingVariantPropType, LabelWithExpertSlotPropType } from '@public-ui/schema';
+import { validateHeadingVariant, validateLabelWithExpertSlot, watchString } from '@public-ui/schema';
+import { Component, h, Host, Prop, State, Watch } from '@stencil/core';
 
-import { HeadingLevel } from '../../types/heading-level';
-import { LabelWithExpertSlotPropType, validateLabelWithExpertSlot } from '../../types/props/label';
-import { watchString } from '../../utils/prop.validators';
-import { API, States } from './types';
 import { watchHeadingLevel } from './validation';
 
+import type { JSX } from '@stencil/core';
 /**
  * @slot - Inhalt der Überschrift.
  */
@@ -13,7 +12,7 @@ import { watchHeadingLevel } from './validation';
 	tag: 'kol-heading-wc',
 	shadow: false,
 })
-export class KolHeadingWc implements API {
+export class KolHeadingWc implements HeadingAPI {
 	/**
 	 * Defines the visible or semantic label of the component (e.g. aria-label, label, headline, caption, summary, etc.). Set to `false` to enable the expert slot.
 	 */
@@ -29,7 +28,12 @@ export class KolHeadingWc implements API {
 	 */
 	@Prop() public _secondaryHeadline?: string;
 
-	@State() public state: States = {
+	/**
+	 * Defines which variant should be used for presentation.
+	 */
+	@Prop() public _variant?: HeadingVariantPropType;
+
+	@State() public state: HeadingStates = {
 		_label: '', // ⚠ required
 		_level: 1,
 	};
@@ -49,64 +53,34 @@ export class KolHeadingWc implements API {
 		watchString(this, '_secondaryHeadline', value);
 	}
 
+	@Watch('_variant')
+	public validateVariant(value?: HeadingVariantPropType): void {
+		validateHeadingVariant(this, value);
+	}
+
 	public componentWillLoad(): void {
 		this.validateLabel(this._label);
 		this.validateLevel(this._level);
 		this.validateSecondaryHeadline(this._secondaryHeadline);
+		this.validateVariant(this._variant);
 	}
 
 	private readonly renderHeadline = (headline: LabelWithExpertSlotPropType, level?: number): JSX.Element => {
-		switch (level) {
-			case 1:
-				return (
-					<h1 class="headline">
-						{headline}
-						<slot name="expert" />
-					</h1>
-				);
-			case 2:
-				return (
-					<h2 class="headline">
-						{headline}
-						<slot name="expert" />
-					</h2>
-				);
-			case 3:
-				return (
-					<h3 class="headline">
-						{headline}
-						<slot name="expert" />
-					</h3>
-				);
-			case 4:
-				return (
-					<h4 class="headline">
-						{headline}
-						<slot name="expert" />
-					</h4>
-				);
-			case 5:
-				return (
-					<h5 class="headline">
-						{headline}
-						<slot name="expert" />
-					</h5>
-				);
-			case 6:
-				return (
-					<h6 class="headline">
-						{headline}
-						<slot name="expert" />
-					</h6>
-				);
-			default:
-				return (
-					<strong class="headline">
-						{headline}
-						<slot name="expert" />
-					</strong>
-				);
-		}
+		const validHeadline = typeof level === 'number' && level > 0 && level <= 6;
+		const HeadlineTag = validHeadline ? `h${level}` : 'strong';
+		const variant = this._variant || HeadlineTag;
+
+		return (
+			<HeadlineTag
+				class={{
+					headline: true,
+					[`headline-${variant}`]: true,
+				}}
+			>
+				{headline}
+				<slot name="expert" />
+			</HeadlineTag>
+		);
 	};
 
 	private readonly renderSecondaryHeadline = (headline: string, level?: number): JSX.Element => {

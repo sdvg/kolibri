@@ -1,18 +1,14 @@
-import { Generic } from '@a11y-ui/core';
+import type { InputPasswordProps, InputPasswordWatches, InputTypeOnOff } from '@public-ui/schema';
+import { validateHasCounter, watchBoolean, watchNumber, watchString, watchValidator } from '@public-ui/schema';
 
-import { InputTypeOnOff } from '../../types/input/types';
-import { validateHasCounter } from '../../types/props/has-counter';
-import { HideErrorPropType, validateHideError } from '../../types/props/hide-error';
-import { a11yHint } from '../../utils/a11y.tipps';
-import { watchBoolean, watchNumber, watchString, watchValidator } from '../../utils/prop.validators';
 import { InputIconController } from '../@deprecated/input/controller-icon';
-import { Props, Watches } from './types';
 
-export class InputPasswordController extends InputIconController implements Watches {
-	protected readonly component: Generic.Element.Component & Props;
+import type { Generic } from 'adopted-style-sheets';
+export class InputPasswordController extends InputIconController implements InputPasswordWatches {
+	protected readonly component: Generic.Element.Component & InputPasswordProps;
 	private placeholderCache?: string;
 
-	public constructor(component: Generic.Element.Component & Props, name: string, host?: HTMLElement) {
+	public constructor(component: Generic.Element.Component & InputPasswordProps, name: string, host?: HTMLElement) {
 		super(component, name, host);
 		this.component = component;
 	}
@@ -29,18 +25,6 @@ export class InputPasswordController extends InputIconController implements Watc
 
 	public validateHasCounter(value?: boolean): void {
 		validateHasCounter(this.component, value);
-	}
-
-	public validateHideError(value?: HideErrorPropType): void {
-		validateHideError(this.component, value, {
-			hooks: {
-				afterPatch: () => {
-					if (this.component.state._hideError) {
-						a11yHint('Property hide-error for inputs: Only use when the error message is shown outside of the input component.');
-					}
-				},
-			},
-		});
 	}
 
 	public validateMaxLength(value?: number): void {
@@ -74,7 +58,6 @@ export class InputPasswordController extends InputIconController implements Watc
 		super.componentWillLoad();
 		this.validateAutoComplete(this.component._autoComplete);
 		this.validateHasCounter(this.component._hasCounter);
-		this.validateHideError(this.component._hideError);
 		this.validateMaxLength(this.component._maxLength);
 		this.validatePattern(this.component._pattern);
 		this.validatePlaceholder(this.component._placeholder);

@@ -1,24 +1,29 @@
-import { Component, Element, Fragment, h, Host, JSX, Prop, State, Watch } from '@stencil/core';
+import type {
+	HideErrorPropType,
+	IdPropType,
+	InputRangeAPI,
+	InputRangeStates,
+	InputTypeOnDefault,
+	InputTypeOnOff,
+	KoliBriHorizontalIcons,
+	LabelWithExpertSlotPropType,
+	NamePropType,
+	Stringified,
+	SuggestionsPropType,
+	SyncValueBySelectorPropType,
+	TooltipAlignPropType,
+	W3CInputValue,
+} from '@public-ui/schema';
+import { propagateFocus, showExpertSlot } from '@public-ui/schema';
+import { Component, Element, Fragment, h, Host, Method, Prop, State, Watch } from '@stencil/core';
 
-import { Stringified } from '../../types/common';
-import { KoliBriHorizontalIcons } from '../../types/icons';
-import { InputTypeOnDefault, InputTypeOnOff } from '../../types/input/types';
-import { HideErrorPropType } from '../../types/props/hide-error';
-import { IdPropType } from '../../types/props/id';
-import { LabelWithExpertSlotPropType } from '../../types/props/label';
-import { NamePropType } from '../../types/props/name';
-import { SuggestionsPropType } from '../../types/props/suggestions';
-import { SyncValueBySelectorPropType } from '../../types/props/sync-value-by-selector';
-import { TooltipAlignPropType } from '../../types/props/tooltip-align';
-import { W3CInputValue } from '../../types/w3c';
 import { nonce } from '../../utils/dev.utils';
-import { propagateFocus, showExpertSlot } from '../../utils/reuse';
 import { propagateSubmitEventToForm } from '../form/controller';
 import { getRenderStates } from '../input/controller';
-import { InputRangeController } from './controller';
-import { API, States } from './types';
 import { InternalUnderlinedAccessKey } from '../span/InternalUnderlinedAccessKey';
+import { InputRangeController } from './controller';
 
+import type { JSX } from '@stencil/core';
 /**
  * @slot - Die Beschriftung des Eingabeelements.
  */
@@ -29,27 +34,53 @@ import { InternalUnderlinedAccessKey } from '../span/InternalUnderlinedAccessKey
 	},
 	shadow: true,
 })
-export class KolInputRange implements API {
+export class KolInputRange implements InputRangeAPI {
 	@Element() private readonly host?: HTMLKolInputRangeElement;
-	private ref?: HTMLInputElement;
+	private refInputNumber?: HTMLInputElement;
+	private refInputRange?: HTMLInputElement;
 
 	private readonly catchInputNumberRef = (element?: HTMLInputElement) => {
 		if (element) {
-			this.ref = element;
+			this.refInputNumber = element;
 			propagateFocus(this.host, element);
-			if (!this._value && this.ref?.value) {
-				this.validateValue(parseFloat(this.ref.value));
+			if (!this._value && this.refInputNumber?.value) {
+				this.validateValue(parseFloat(this.refInputNumber.value));
 			}
 		}
 	};
 
+	private readonly catchInputRangeRef = (element?: HTMLInputElement) => {
+		if (element) {
+			this.refInputRange = element;
+		}
+	};
+
+	private getSanitizedFloatValue(value: string): number {
+		const floatValue = parseFloat(value);
+		if (this.state._max && floatValue > this.state._max) {
+			return this.state._max;
+		}
+		if (this.state._min && floatValue < this.state._min) {
+			return this.state._min;
+		}
+		return floatValue;
+	}
+
+	// eslint-disable-next-line @typescript-eslint/require-await
+	@Method()
+	public async getValue(): Promise<number | undefined> {
+		if (this.refInputNumber !== undefined) {
+			const value = this.refInputNumber.value;
+			return this.getSanitizedFloatValue(value);
+		}
+	}
+
 	private readonly onChange = (event: Event) => {
-		let value = parseFloat((event.target as HTMLInputElement).value);
-		if (this.state._max && value > this.state._max) value = this.state._max;
-		if (this.state._min && value < this.state._min) value = this.state._min;
-		this.validateValue(value);
+		const value = (event.target as HTMLInputElement).value;
+		const floatValue = this.getSanitizedFloatValue(value);
+		this.validateValue(floatValue);
 		if (typeof this.state._on?.onChange === 'function') {
-			this.state._on?.onChange(event, value);
+			this.state._on?.onChange(event, floatValue);
 		}
 	};
 
@@ -57,12 +88,18 @@ export class KolInputRange implements API {
 		if (event.code === 'Enter') {
 			propagateSubmitEventToForm({
 				form: this.host,
-				ref: this.ref,
+				ref: this.refInputNumber,
 			});
 		} else {
 			this.onChange(event);
 		}
 	};
+
+	componentDidLoad() {
+		if (!this._value && this.refInputRange?.value) {
+			this.validateValue(parseFloat(this.refInputRange.value));
+		}
+	}
 
 	public render(): JSX.Element {
 		const { ariaDescribedBy } = getRenderStates(this.state);
@@ -110,10 +147,12 @@ export class KolInputRange implements API {
 							}}
 						>
 							<input
+								ref={this.catchInputRangeRef}
 								title=""
 								accessKey={this.state._accessKey}
 								aria-describedby={ariaDescribedBy.length > 0 ? ariaDescribedBy.join(' ') : undefined}
 								aria-label={this.state._hideLabel && typeof this.state._label === 'string' ? this.state._label : undefined}
+								aria-hidden="true"
 								autoCapitalize="off"
 								autoComplete={this.state._autoComplete}
 								autoCorrect="off"
@@ -289,10 +328,10 @@ export class KolInputRange implements API {
 	 */
 	@Prop() public _value?: number;
 
-	@State() public state: States = {
+	@State() public state: InputRangeStates = {
 		_autoComplete: 'off',
 		_hideError: false,
-		_id: `id-${nonce()}`, // ⚠ required
+		_id: `id-${nonce()}`,
 		_label: '', // ⚠ required
 		_suggestions: [],
 	};

@@ -1,23 +1,30 @@
-import { Component, Element, Fragment, h, Host, JSX, Prop, State, Watch } from '@stencil/core';
+import type {
+	CheckedPropType,
+	HideErrorPropType,
+	IdPropType,
+	IndeterminatePropType,
+	InputCheckboxAPI,
+	InputCheckboxIconsProp,
+	InputCheckboxStates,
+	InputCheckboxVariant,
+	InputTypeOnDefault,
+	LabelWithExpertSlotPropType,
+	NamePropType,
+	StencilUnknown,
+	Stringified,
+	SyncValueBySelectorPropType,
+	TooltipAlignPropType,
+} from '@public-ui/schema';
+import { propagateFocus, showExpertSlot } from '@public-ui/schema';
+import { Component, Element, Fragment, h, Host, Method, Prop, State, Watch } from '@stencil/core';
 
-import { Stringified } from '../../types/common';
-import { InputTypeOnDefault } from '../../types/input/types';
-import { CheckedPropType } from '../../types/props/checked';
-import { HideErrorPropType } from '../../types/props/hide-error';
-import { IdPropType } from '../../types/props/id';
-import { IndeterminatePropType } from '../../types/props/indeterminate';
-import { LabelWithExpertSlotPropType } from '../../types/props/label';
-import { NamePropType } from '../../types/props/name';
-import { SyncValueBySelectorPropType } from '../../types/props/sync-value-by-selector';
-import { TooltipAlignPropType } from '../../types/props/tooltip-align';
-import { StencilUnknown } from '../../types/unknown';
 import { nonce } from '../../utils/dev.utils';
-import { stopPropagation, tryToDispatchKoliBriEvent } from '../../utils/events';
-import { propagateFocus, showExpertSlot } from '../../utils/reuse';
+import { tryToDispatchKoliBriEvent } from '../../utils/events';
 import { getRenderStates } from '../input/controller';
-import { InputCheckboxController } from './controller';
-import { API, InputCheckboxIconsProp, InputCheckboxVariant, States } from './types';
 import { InternalUnderlinedAccessKey } from '../span/InternalUnderlinedAccessKey';
+import { InputCheckboxController } from './controller';
+
+import type { JSX } from '@stencil/core';
 
 /**
  * @slot expert - Die Beschriftung der Checkbox.
@@ -29,12 +36,20 @@ import { InternalUnderlinedAccessKey } from '../span/InternalUnderlinedAccessKey
 	},
 	shadow: true,
 })
-export class KolInputCheckbox implements API {
+export class KolInputCheckbox implements InputCheckboxAPI {
 	@Element() private readonly host?: HTMLKolInputCheckboxElement;
+	private ref?: HTMLInputElement;
 
 	private readonly catchRef = (ref?: HTMLInputElement) => {
+		this.ref = ref;
 		propagateFocus(this.host, ref);
 	};
+
+	// eslint-disable-next-line @typescript-eslint/require-await
+	@Method()
+	public async getValue(): Promise<boolean | undefined> {
+		return this.ref?.checked;
+	}
 
 	public render(): JSX.Element {
 		const { ariaDescribedBy } = getRenderStates(this.state);
@@ -48,10 +63,10 @@ export class KolInputCheckbox implements API {
 						[this.state._variant]: true,
 						'hide-label': !!this.state._hideLabel,
 						checked: this.state._checked,
+						indeterminate: this.state._indeterminate,
 					}}
 					data-role={this.state._variant === 'button' ? 'button' : undefined}
 					onKeyPress={this.state._variant === 'button' ? this.onChange : undefined}
-					tabIndex={this.state._variant === 'button' && !this.state._disabled ? 0 : undefined}
 					_accessKey={this.state._accessKey}
 					_alert={this.state._alert}
 					_disabled={this.state._disabled}
@@ -79,16 +94,16 @@ export class KolInputCheckbox implements API {
 							<span>{this.state._label}</span>
 						)}
 					</span>
-					<div slot="input">
+					<label slot="input" class="checkbox-container">
 						<kol-icon
 							class="icon"
-							onClick={this.handleIconClick.bind(this)}
 							_icons={
 								this.state._indeterminate ? this.state._icons.indeterminate : this.state._checked ? this.state._icons.checked : this.state._icons.unchecked
 							}
 							_label=""
 						/>
 						<input
+							class={`checkbox-input-element${this.state._variant === 'button' ? ' visually-hidden' : ''}`}
 							ref={this.catchRef}
 							title=""
 							accessKey={this.state._accessKey} // by checkbox?!
@@ -106,7 +121,7 @@ export class KolInputCheckbox implements API {
 							onChange={this.onChange}
 							onClick={undefined} // onClick is not needed since onChange already triggers the correct event
 						/>
-					</div>
+					</label>
 				</kol-input>
 			</Host>
 		);
@@ -228,7 +243,7 @@ export class KolInputCheckbox implements API {
 	 */
 	@Prop() public _variant?: InputCheckboxVariant = 'default';
 
-	@State() public state: States = {
+	@State() public state: InputCheckboxStates = {
 		_checked: false,
 		_hideError: false,
 		_icons: {
@@ -353,12 +368,6 @@ export class KolInputCheckbox implements API {
 		this.controller.componentWillLoad();
 	}
 
-	private handleIconClick(event: Event): void {
-		if (!this.state._disabled) {
-			this.onChange(event);
-		}
-	}
-
 	private onChange = (event: Event): void => {
 		this._checked = !this._checked;
 		this._indeterminate = false;
@@ -366,16 +375,16 @@ export class KolInputCheckbox implements API {
 		const value = this._checked ? this.state._value : null;
 
 		// Event handling
-		stopPropagation(event);
+		// stopPropagation(event);
 		tryToDispatchKoliBriEvent('change', this.host, value);
 
 		// Static form handling
-		this.controller.setFormAssociatedValue(value);
-		this.controller.setFormAssociatedCheckboxValue;
+		// this.controller.setFormAssociatedValue(value);
+		this.controller.setFormAssociatedCheckboxValue(value);
 
 		// Callback
-		if (typeof this.state._on?.onChange === 'function') {
-			this.state._on.onChange(event, value);
+		if (typeof this._on?.onChange === 'function') {
+			this._on.onChange(event, value);
 		}
 	};
 }

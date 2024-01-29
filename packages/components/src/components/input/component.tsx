@@ -1,18 +1,24 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { Component, Element, Fragment, h, Host, JSX, Prop } from '@stencil/core';
+import type { JSX } from '@stencil/core';
+import { handleSlotContent, showExpertSlot } from '@public-ui/schema';
+import { Component, Element, Fragment, h, Host, Prop } from '@stencil/core';
 
 import { translate } from '../../i18n';
-import { Stringified } from '../../types/common';
-import { AnyIconFontClass, KoliBriCustomIcon, KoliBriHorizontalIcons } from '../../types/icons';
-import { AccessKeyPropType } from '../../types/props/access-key';
-import { IdPropType } from '../../types/props/id';
-import { LabelWithExpertSlotPropType } from '../../types/props/label';
-import { SuggestionsPropType } from '../../types/props/suggestions';
-import { TooltipAlignPropType } from '../../types/props/tooltip-align';
-import { W3CInputValue } from '../../types/w3c';
-import { handleSlotContent, showExpertSlot } from '../../utils/reuse';
-import { Props as ButtonProps } from '../button/types';
-import { Props } from './types';
+
+import type {
+	AccessKeyPropType,
+	AnyIconFontClass,
+	ButtonProps,
+	IdPropType,
+	KoliBriCustomIcon,
+	KoliBriHorizontalIcons,
+	LabelWithExpertSlotPropType,
+	Stringified,
+	SuggestionsPropType,
+	TooltipAlignPropType,
+	W3CInputValue,
+} from '@public-ui/schema';
+import type { Props } from './types';
 
 /**
  * @internal
@@ -55,9 +61,9 @@ export class KolInput implements Props {
 					'hidden-error': this._hideError === true,
 				}}
 			>
-				<label id={!useTooltopInsteadOfLabel ? `${this._id}-label` : undefined} hidden={useTooltopInsteadOfLabel} htmlFor={this._id}>
+				<label class="input-label" id={!useTooltopInsteadOfLabel ? `${this._id}-label` : undefined} hidden={useTooltopInsteadOfLabel} htmlFor={this._id}>
 					{/* INFO: span is needed for css styling :after content like a star (*) or optional text ! */}
-					<span>
+					<span class="input-label-span">
 						{/* INFO: label comes with any html tag or as plain text! */}
 						<slot name="label"></slot>
 					</span>
@@ -110,14 +116,7 @@ export class KolInput implements Props {
 					></kol-tooltip-wc>
 				)}
 				{hasError && (
-					<kol-alert
-						_alert={this._alert}
-						_type="error"
-						_variant="msg"
-						aria-hidden={this._hideError}
-						class={`error${this._hideError ? ' hidden' : ''}`}
-						id={`${this._id}-error`}
-					>
+					<kol-alert _alert={this._alert} _type="error" class={`error${this._hideError ? ' hidden' : ''}`} id={`${this._id}-error`}>
 						{this._error}
 					</kol-alert>
 				)}

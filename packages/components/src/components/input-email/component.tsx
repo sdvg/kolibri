@@ -1,26 +1,30 @@
-import { Component, Element, Fragment, h, Host, JSX, Prop, State, Watch } from '@stencil/core';
+import type {
+	ButtonProps,
+	HideErrorPropType,
+	IdPropType,
+	InputEmailAPI,
+	InputEmailStates,
+	InputTypeOnDefault,
+	InputTypeOnOff,
+	KoliBriHorizontalIcons,
+	LabelWithExpertSlotPropType,
+	MultiplePropType,
+	NamePropType,
+	Stringified,
+	SuggestionsPropType,
+	SyncValueBySelectorPropType,
+	TooltipAlignPropType,
+} from '@public-ui/schema';
+import { propagateFocus, setState, showExpertSlot } from '@public-ui/schema';
+import { Component, Element, Fragment, h, Host, Method, Prop, State, Watch } from '@stencil/core';
 
-import { Stringified } from '../../types/common';
-import { KoliBriHorizontalIcons } from '../../types/icons';
-import { InputTypeOnDefault, InputTypeOnOff } from '../../types/input/types';
-import { HideErrorPropType } from '../../types/props/hide-error';
-import { IdPropType } from '../../types/props/id';
-import { LabelWithExpertSlotPropType } from '../../types/props/label';
-import { MultiplePropType } from '../../types/props/multiple';
-import { NamePropType } from '../../types/props/name';
-import { SuggestionsPropType } from '../../types/props/suggestions';
-import { SyncValueBySelectorPropType } from '../../types/props/sync-value-by-selector';
-import { TooltipAlignPropType } from '../../types/props/tooltip-align';
 import { nonce } from '../../utils/dev.utils';
-import { setState } from '../../utils/prop.validators';
-import { propagateFocus, showExpertSlot } from '../../utils/reuse';
-import { Props as ButtonProps } from '../button/types';
 import { propagateSubmitEventToForm } from '../form/controller';
 import { getRenderStates } from '../input/controller';
-import { InputEmailController } from './controller';
-import { API, States } from './types';
 import { InternalUnderlinedAccessKey } from '../span/InternalUnderlinedAccessKey';
+import { InputEmailController } from './controller';
 
+import type { JSX } from '@stencil/core';
 /**
  * @slot - Die Beschriftung des Eingabefeldes.
  */
@@ -31,7 +35,7 @@ import { InternalUnderlinedAccessKey } from '../span/InternalUnderlinedAccessKey
 	},
 	shadow: true,
 })
-export class KolInputEmail implements API {
+export class KolInputEmail implements InputEmailAPI {
 	@Element() private readonly host?: HTMLKolInputEmailElement;
 	private ref?: HTMLInputElement;
 
@@ -39,6 +43,12 @@ export class KolInputEmail implements API {
 		this.ref = ref;
 		propagateFocus(this.host, this.ref);
 	};
+
+	// eslint-disable-next-line @typescript-eslint/require-await
+	@Method()
+	public async getValue(): Promise<string | undefined> {
+		return this.ref?.value;
+	}
 
 	private readonly onKeyUp = (event: KeyboardEvent) => {
 		setState(this, '_currentLength', (event.target as HTMLInputElement).value.length);
@@ -85,6 +95,7 @@ export class KolInputEmail implements API {
 					_tooltipAlign={this._tooltipAlign}
 					_touched={this.state._touched}
 					onClick={() => this.ref?.focus()}
+					role={`presentation` /* Avoid element being read as 'clickable' in NVDA */}
 				>
 					<span slot="label">
 						{hasExpertSlot ? (
@@ -279,12 +290,12 @@ export class KolInputEmail implements API {
 	 */
 	@Prop() public _value?: string;
 
-	@State() public state: States = {
+	@State() public state: InputEmailStates = {
 		_autoComplete: 'off',
 		_currentLength: 0,
 		_hasValue: false,
 		_hideError: false,
-		_id: `id-${nonce()}`, // ⚠ required
+		_id: `id-${nonce()}`,
 		_label: '', // ⚠ required
 		_suggestions: [],
 	};

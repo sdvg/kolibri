@@ -187,17 +187,7 @@ ROUTES.set('input-range/basic', null);
 ROUTES.set('input-text/basic', null);
 ROUTES.set('input-text/blur', null);
 ROUTES.set('input-text/focus', null);
-ROUTES.set('kolibri/animated', {
-	axe: {
-		skipFailures: false,
-	},
-});
 ROUTES.set('kolibri/basic', {
-	axe: {
-		skipFailures: false,
-	},
-});
-ROUTES.set('kolibri/no-label', {
 	axe: {
 		skipFailures: false,
 	},
@@ -243,11 +233,6 @@ ROUTES.set('logo/basic', {
 	},
 });
 ROUTES.set('modal/basic', {
-	axe: {
-		skipFailures: false,
-	},
-});
-ROUTES.set('nav/active', {
 	axe: {
 		skipFailures: false,
 	},
@@ -309,12 +294,7 @@ ROUTES.set('split-button/basic', {
 		skipFailures: false,
 	},
 });
-ROUTES.set('table/badge-size', {
-	axe: {
-		skipFailures: false,
-	},
-});
-ROUTES.set('table/render-cell', {
+ROUTES.set('table/column-alignment', {
 	axe: {
 		skipFailures: false,
 	},
@@ -325,6 +305,11 @@ ROUTES.set('table/sort-data', {
 	},
 });
 ROUTES.set('table/with-pagination', {
+	axe: {
+		skipFailures: false,
+	},
+});
+ROUTES.set('table/pagination-position', {
 	axe: {
 		skipFailures: false,
 	},

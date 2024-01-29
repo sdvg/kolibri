@@ -1,5 +1,6 @@
-import { Generic } from '@a11y-ui/core';
-import { h, Host, JSX, State } from '@stencil/core';
+import type { Generic } from 'adopted-style-sheets';
+import type { JSX } from '@stencil/core';
+import { h, Host, State } from '@stencil/core';
 
 import { Bundesministerium } from '../../../enums/bund';
 
